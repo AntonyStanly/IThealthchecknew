@@ -1,0 +1,54 @@
+﻿@using WebApplication2.Models
+@model ITHealthCheckFormDataModel
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="text-center">
+    <form method="post">
+        <div>
+            <label for="categories">Choose a category:</label>
+            @Html.DropDownListFor(m => m.Category,
+            new List<SelectListItem>
+                {
+                new SelectListItem { Value = "Printer" , Text = "Printer" },
+                new SelectListItem { Value = "Computer" , Text = "Computer" },
+                new SelectListItem { Value = "Wireless" , Text = "Wireless" },
+                new SelectListItem { Value = "Tablet" , Text = "Tablet" },
+                new SelectListItem { Value = "Desk Phone" , Text = "Desk Phone" },
+                new SelectListItem { Value = "Copier" , Text = "Copier" },
+                new SelectListItem { Value = "Scan Gun" , Text = "Scan Gun" }
+                })
+                <br>
+                @Html.DropDownListFor(model => model.Rating,
+                      new List<SelectListItem> {
+                           new SelectListItem { Value = "0" , Text = "0" },
+                           new SelectListItem { Value = "1" , Text = "1" },
+                           new SelectListItem { Value = "2" , Text = "2" },
+                           new SelectListItem { Value = "3" , Text = "3" }
+                        })
+                <br>
+                @Html.TextBoxFor(m => m.VisualDescription)
+                <br>
+                <input type="submit" value="Submit"/>
+
+                <script type="text/javascript">
+                    function enableRating() {
+                        if (document.getElementById('category').value != '')
+                            document.getElementById('rating').disabled = false;
+                        else
+                            document.getElementById('rating').disabled = true;
+                    }
+                    function enabletextbox() {
+                        if (document.getElementById('rating').value != '4')
+                            document.getElementById('feedbackbox').disabled = false;
+                        else
+                            document.getElementById('feedbackbox').disabled = true;
+                    }
+
+                </script>
+        </div>
+    </form>
+</div>
+
+
